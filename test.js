@@ -95,6 +95,7 @@ function initialize() {
 
     tim = tim + dateTime.getHours() + ":" + ((dateTime.getMinutes() < 10) ? '0' + dateTime.getMinutes() : dateTime.getMinutes()) + ":" + dateTime.getSeconds();
     startTime = tim + suffix;
+    console.log(startTime);
     document.getElementById('tim').value = fixTime(tim);
 
     if (location.protocol != 'https:') {
@@ -368,6 +369,11 @@ function fixTime(time_) {
     let hr = time_.substring(0, 2);
     let min = time_.substring(3, 5);
     let suffix = "A.M.";
+    
+    if (hr.indexOf(':') > -1) {
+        hr = time_.substring(0, 1);
+        min = time_.substring(2, 4);
+    }
 
     if (hr > 12) {
         hr -= 12;
